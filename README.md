@@ -3,13 +3,8 @@
 ## Table of contents
 
 - [how-to content](how-to.md)
-
-## Architecture
-
-### Component-First Architecture
-
-Some in the Angular community are calling this new paradigm a "Component-First Architecture," where the component becomes the primary unit of organization, rather than the NgModule. This term directly implies an architectural approach.
-
+- [architecture content](architecture.md)
+ 
 ## About Semantic Versioning
 
 Semantic Versioning, often referred to as "SemVer," is a formal specification for how version numbers are assigned and incremented. It uses a three-part numbering system: **MAJOR.MINOR.PATCH**. This system helps developers and users understand the nature of changes between versions.
