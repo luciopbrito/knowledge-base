@@ -9,7 +9,7 @@ How-to section is good to achieve a specific result flowing some step by step.
 - [how to delete specific folder in the current workspace](#how-to-delete-specific-folder-in-the-current-workspace)
 - [How to define dependencies by major version (semver)](#how-to-define-dependencies-by-major-version-semver)
 - [How to update all Angular packages to the same major](#how-to-update-all-angular-packages-to-the-same-major)
--[How to clean the worktree based on the current commit](#how-to-clean-the-worktree-based-on-the-current-commit)
+- [How to clean the worktree based on the current commit](#how-to-clean-the-worktree-based-on-the-current-commit)
 
 ### how to delete specific folder in the current workspace
 
