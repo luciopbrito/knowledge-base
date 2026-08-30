@@ -11,6 +11,7 @@ How-to section is good to achieve a specific result flowing some step by step.
 - [How to update all Angular packages to the same major](#how-to-update-all-angular-packages-to-the-same-major)
 - [How to clean the worktree based on the current commit](#how-to-clean-the-worktree-based-on-the-current-commit)
 - [How to find text in files](#how-to-find-text-in-files)
+- [How to define a notification to remind the MacBook is charging](#how-to-define-a-notification-to-remind-the-macbook-is-charging)
 
 ### how to delete specific folder in the current workspace
 
@@ -135,3 +136,153 @@ find /path/to/search -type f -exec grep -H "your_search_string" {} \;
 - -H: Forces grep to print the filename alongside the matching line.
 - {}: A placeholder that find dynamically replaces with the path of each file found.
 \;: Terminates the -exec command string.
+
+### How to define a notification to remind the MacBook is charging
+
+#### 1. Create the script
+
+Create a file named `battery-check.sh`:
+
+```bash
+#!/bin/bash
+
+BATTERY_INFO=$(pmset -g batt)
+
+PERCENT=$(echo "$BATTERY_INFO" | grep -o '[0-9]\+%' | tr -d '%')
+
+# Check if Mac is charging
+if echo "$BATTERY_INFO" | grep -q "AC Power"; then
+    if [ "$PERCENT" -ge 80 ]; then
+        osascript -e 'display notification "Battery reached 80%. Unplug the charger." with title "Battery Reminder" sound name "Glass"'
+    fi
+fi
+```
+
+Save it, for example, as:
+
+```text
+~/Scripts/battery-check.sh
+```
+
+Make it executable:
+
+```bash
+chmod +x ~/Scripts/battery-check.sh
+```
+
+---
+
+#### 2. Create a LaunchAgent
+
+Create the folder if needed:
+
+```bash
+mkdir -p ~/Library/LaunchAgents
+```
+
+Create this file:
+
+```text
+~/Library/LaunchAgents/com.user.batterycheck.plist
+```
+
+Paste:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+    <key>Label</key>
+    <string>com.user.batterycheck</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/YOUR_USERNAME/Scripts/battery-check.sh</string>
+    </array>
+
+    <key>StartInterval</key>
+    <integer>60</integer>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+</dict>
+</plist>
+```
+
+Replace `YOUR_USERNAME` with your macOS username.
+
+---
+
+#### 3. Validate the plist
+
+Run:
+
+```bash
+plutil ~/Library/LaunchAgents/com.user.batterycheck.plist
+```
+
+If it's valid, you'll see:
+
+```
+... OK
+```
+
+If not, paste the output here.
+
+#### 4. Use the correct command
+
+For a user LaunchAgent, **don't use `sudo`**. Run:
+
+```bash
+launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.user.batterycheck.plist 2>/dev/null
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.user.batterycheck.plist
+```
+
+or on some macOS versions:
+
+```bash
+launchctl load ~/Library/LaunchAgents/com.user.batterycheck.plist
+```
+
+#### 5. Check the logs
+
+If it still fails:
+
+```bash
+log show --last 5m --predicate 'process == "launchd"' --style compact
+```
+
+This often tells you the exact reason.
+
+---
+
+#### Prevent repeated notifications
+
+The script above will notify you every minute while the battery stays at or above 80%. Here's an improved version that only notifies **once** until you unplug the charger:
+
+```bash
+#!/bin/bash
+
+STATE_FILE="/tmp/battery80_notified"
+
+BATTERY_INFO=$(pmset -g batt)
+PERCENT=$(echo "$BATTERY_INFO" | grep -o '[0-9]\+%' | tr -d '%')
+
+if echo "$BATTERY_INFO" | grep -q "AC Power"; then
+    if [ "$PERCENT" -ge 80 ]; then
+        if [ ! -f "$STATE_FILE" ]; then
+            osascript -e 'display notification "Battery reached 80%. Unplug the charger." with title "Battery Reminder" sound name "Glass"'
+            touch "$STATE_FILE"
+        fi
+    fi
+else
+    rm -f "$STATE_FILE"
+fi
+```
+
+This version sends a single notification at 80% or higher, then won't notify again until the charger is unplugged and plugged back in.
