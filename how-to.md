@@ -135,7 +135,7 @@ find /path/to/search -type f -exec grep -H "your_search_string" {} \;
 - -exec: Tells find to run an external command on every file it encounters.grep: The command used to search text inside the files.
 - -H: Forces grep to print the filename alongside the matching line.
 - {}: A placeholder that find dynamically replaces with the path of each file found.
-\;: Terminates the -exec command string.
+- \;: Terminates the -exec command string.
 
 ### How to define a notification to remind the MacBook is charging
 
