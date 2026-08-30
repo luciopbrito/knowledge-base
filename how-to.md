@@ -10,6 +10,7 @@ How-to section is good to achieve a specific result flowing some step by step.
 - [How to define dependencies by major version (semver)](#how-to-define-dependencies-by-major-version-semver)
 - [How to update all Angular packages to the same major](#how-to-update-all-angular-packages-to-the-same-major)
 - [How to clean the worktree based on the current commit](#how-to-clean-the-worktree-based-on-the-current-commit)
+- [How to find text in files](#how-to-find-text-in-files)
 
 ### how to delete specific folder in the current workspace
 
@@ -112,3 +113,25 @@ In fact, the comand to delete all files that are not tracking.
 ```bash
 git clean -fdn
 ```
+
+### How to find text in files
+
+## Why
+
+Sometimes, you need to verify specific content, and you do not know how to find — e.g. a term or word — The command below
+helps you find where you can check.
+
+## Syntax
+
+```sh
+find /path/to/search -type f -exec grep -H "your_search_string" {} \;
+```
+
+## Breakdown of the Syntax
+
+- /path/to/search: The starting directory (use . for the current directory).
+- -type f: Restricts the search strictly to regular files, skipping directories and system files.
+- -exec: Tells find to run an external command on every file it encounters.grep: The command used to search text inside the files.
+- -H: Forces grep to print the filename alongside the matching line.
+- {}: A placeholder that find dynamically replaces with the path of each file found.
+\;: Terminates the -exec command string.
