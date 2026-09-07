@@ -4,4 +4,4 @@
 
 - [how-to content](how-to.md)
 - [architecture content](architecture.md)
-- [planning content](planning.md)
+- [planning content](./planinng/README.md)

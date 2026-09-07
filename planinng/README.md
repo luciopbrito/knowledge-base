@@ -9,7 +9,7 @@ The planning section defines some tips to help you become a better planner.
 - [About How to Measure Task Priority](#about-how-to-measure-task-priority)
 - [About How to Measure Task Size](#about-how-to-measure-task-size)
 - [About Semantic Versioning](#about-semantic-versioning)
-- [About Conventional Commits](#about-conventional-commits)
+- [About Conventional Commits](./about-convetional-commit.md)
 
 ## About How to Measure Task Priority
 
@@ -78,19 +78,3 @@ Imagine you're developing a React component library used across multiple fronten
 By following SemVer, other teams consuming your component library can easily understand the impact of upgrading to a new version. A patch update (`1.0.1` to `1.0.2`) is generally safe, a minor update (`1.0.0` to `1.1.0`) brings new features but should still be compatible, and a major update (`1.0.0` to `2.0.0`) signals that they need to review the changelog and potentially update their code.
 
 > source: <https://semver.org/>
-
-## About Conventional Commits
-
-| Type | Meaning | Example |
-| ---- | ------- | ------- |
-| `test` | indica qualquer tipo de criação ou alteração de códigos de teste.| Exemplo: Criação de testes unitários. |
-| `feat` | indica o desenvolvimento de uma nova feature ao projeto.| Exemplo: Acréscimo de um serviço, funcionalidade, endpoint, etc. |
-| `refactor` | usado quando houver uma refatoração de código que não tenha qualquer tipo de impacto na lógica/regras de negócio do sistema.| Exemplo: Mudanças de código após um code review |
-| `style` | empregado quando há mudanças de formatação e estilo do código que não alteram o sistema de nenhuma forma.| Exemplo: Mudar o style-guide, mudar de convenção lint, arrumar indentações, remover espaços em brancos, remover comentários, etc..|
-| `fix` | utilizado quando há correção de erros que estão gerando bugs no sistema.| Exemplo: Aplicar tratativa para uma função que não está tendo o comportamento esperado e retornando erro.|
-| `chore` | indica mudanças no projeto que não afetem o sistema ou arquivos de testes. São mudanças de desenvolvimento.| Exemplo: Mudar regras do eslint, adicionar prettier, adicionar mais extensões de arquivos ao .gitignore |
-| `docs` | usado quando há mudanças na documentação do projeto.| Exemplo: adicionar informações na documentação da API, mudar o README, etc. |
-| `build` | utilizada para indicar mudanças que afetam o processo de build do projeto ou dependências externas.| Exemplo: Gulp, adicionar/remover dependências do npm, etc.|
-| `perf` | indica uma alteração que melhorou a performance do sistema.| Exemplo: alterar ForEach por while, melhorar a query ao banco, etc.|
-| `ci` | utilizada para mudanças nos arquivos de configuração de CI.| Exemplo: Circle, Travis, BrowserStack, etc.|
-| `revert` | indica a reverão de um commit anterior.|  |
