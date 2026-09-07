@@ -9,7 +9,7 @@ The planning section defines some tips to help you become a better planner.
 - [About How to Measure Task Priority](#about-how-to-measure-task-priority)
 - [About How to Measure Task Size](#about-how-to-measure-task-size)
 - [About Semantic Versioning](#about-semantic-versioning)
-- [About Conventional Commits](./about-convetional-commit.md)
+- [About Conventional Commits](./about-conventional-commit.md)
 
 ## About How to Measure Task Priority
 
