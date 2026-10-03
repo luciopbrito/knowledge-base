@@ -5,3 +5,4 @@
 - [how-to content](how-to.md)
 - [architecture content](architecture.md)
 - [planning content](./planinng/README.md)
+- [concepts](./concepts/README.md)
