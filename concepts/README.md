@@ -10,3 +10,4 @@ This page displays information about concepts.
 - [Embedding](./what-is-embedding.md)
 - [Chunk](./what-is-chunk.md)
 - [Vector](./what-is-vector.md)
+- [Vector Search](./what-is-vector-search.md)
