@@ -12,3 +12,4 @@ This page displays information about concepts.
 - [Vector](./what-is-vector.md)
 - [Vector Search](./what-is-vector-search.md)
 - [Retrieval](./what-is-retrieval.md)
+- [Prompt](./what-is-prompt.md)
