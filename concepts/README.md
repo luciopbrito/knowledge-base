@@ -9,3 +9,4 @@ This page displays information about concepts.
 - [LLM](./what-is-LLM.md)
 - [Embedding](./what-is-embedding.md)
 - [Chunk](./what-is-chunk.md)
+- [Vector](./what-is-vector.md)
