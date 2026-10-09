@@ -13,3 +13,4 @@ This page displays information about concepts.
 - [Vector Search](./what-is-vector-search.md)
 - [Retrieval](./what-is-retrieval.md)
 - [Prompt](./what-is-prompt.md)
+- [RAG](./what-is-rag.md)
